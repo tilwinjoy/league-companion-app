@@ -9,9 +9,9 @@
 <link rel="canonical" href="https://tilwinjoy.github.io/league-companion-app/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="League Companion App">
-<meta property="og:description" content="Track your champion collection, mastery, skins and wishlist from a lightweight Windows desktop app.">
+<meta property="og:description" content="Track your champion and skin collections, mastery, and wishlist sale alerts from a lightweight Windows desktop app.">
 <meta property="og:url" content="https://tilwinjoy.github.io/league-companion-app/">
-<meta property="og:image" content="https://tilwinjoy.github.io/league-companion-app/assets/images/dark/lc_dashboard_dark.png">
+<meta property="og:image" content="https://tilwinjoy.github.io/league-companion-app/assets/images/dark/lc_skin_inventory_dark_no_disclaimer.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23080b12'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='700' fill='%23c8aa6e' text-anchor='middle'%3ELC%3C/text%3E%3C/svg%3E">
 <script>
@@ -35,10 +35,7 @@
   <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
   <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
-  <symbol id="i-shard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6-6 6 6-6 12z"/><path d="M6 9h12"/></symbol>
-  <symbol id="i-filter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18l-7 8v6l-4-2v-4z"/></symbol>
-  <symbol id="i-vault" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 8.3-7 10-4-1.7-7-5.6-7-10V6z"/></symbol>
-  <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></symbol>
 </svg>
 
 <header class="site-header">
@@ -61,9 +58,8 @@
 
 <main>
   <section class="hero wrap">
-    <span class="eyebrow"><span class="dot"></span> Windows desktop companion &middot; Electron + React</span>
     <h1>League <span>Companion</span> App</h1>
-    <p class="hero__sub">Track your champion collection, mastery progress, skins and a live wishlist sales radar - all in one focused dashboard that reads your game data from the local League client.</p>
+    <p class="hero__sub">Track your champion and skin collections, mastery progress, and per-account wishlist sale alerts—all in one lightweight companion app built for every League player.</p>
     <div class="hero__cta">
       <a id="download-btn" class="btn btn--primary" href="https://github.com/tilwinjoy/league-companion-app/releases" rel="noopener">
         <svg aria-hidden="true"><use href="#i-download"/></svg> Download for Windows
@@ -75,70 +71,114 @@
     <p class="btn__note" id="release-meta" aria-live="polite">Checking the latest release&hellip;</p>
   </section>
 
-  <section class="section wrap" aria-labelledby="preview-title">
+  <section class="section wrap section--wide" aria-labelledby="preview-title">
     <div class="section__head">
-      <h2 id="preview-title">Take a look inside</h2>
-      <p>A single window for your whole collection. Use the theme switch above to preview both dark and light modes.</p>
+      <h2 id="preview-title">Master your collection &amp; progression</h2>
+      <p>Track every champion mastery tier, sort by collection completeness, and dive into community-voted rankings and preview videos for every cosmetic in the game.</p>
     </div>
-    <div class="shots">
+
+    <div class="shots shots--featured">
       <article class="shot">
         <div class="shot__frame">
-          <img class="shot--dark" src="assets/images/dark/lc_dashboard_dark.png" alt="Dashboard showing champion and skin collection progress" loading="lazy">
-          <img class="shot--light" src="assets/images/light/lc_dashboad_light.png" alt="Dashboard shown in the light theme" loading="lazy">
-        </div>
-        <div class="shot__body">
-          <h3>Dashboard</h3>
-          <p>Collection and skin progress, mastery score, Blue Essence and an at-a-glance shop &amp; sales radar.</p>
-        </div>
-      </article>
-      <article class="shot">
-        <div class="shot__frame">
-          <img class="shot--dark" src="assets/images/dark/lc_champion_inventory_least_skins_dark.png" alt="Champion inventory filtered by least skins owned" loading="lazy">
-          <img class="shot--light" src="assets/images/light/lc_champion_inventory_light.png" alt="Champion inventory shown in the light theme" loading="lazy">
-        </div>
-        <div class="shot__body">
-          <h3>Champion inventory</h3>
-          <p>Every champion with skins owned, mastery level and the points left to the next level.</p>
-        </div>
-      </article>
-      <article class="shot">
-        <div class="shot__frame">
-          <img class="shot--dark" src="assets/images/dark/lc_wishlist_win_notification_dark.png" alt="Wishlist with a desktop notification for a discounted skin" loading="lazy">
-          <img class="shot--light" src="assets/images/light/lc_wishlist_light.png" alt="Wishlist shown in the light theme" loading="lazy">
+          <img class="shot--dark" src="assets/images/dark/lc_wishlist_win_notification_dark.jpg" alt="Wishlist with a desktop notification for a discounted skin" loading="lazy">
+          <img class="shot--light" src="assets/images/light/lc_wishlist_win_notification_light.jpg" alt="Wishlist with a desktop notification for a discounted skin, shown in the light theme" loading="lazy">
         </div>
         <div class="shot__body">
           <h3>Wishlist &amp; sales radar</h3>
           <p>Pin the skins you want and get notified the moment they go on sale or land in the Mythic Shop.</p>
         </div>
       </article>
+      <article class="shot">
+        <div class="shot__frame">
+          <img class="shot--dark" src="assets/images/dark/lc_skin_details_dark.jpg" alt="Skin detail page in the dark theme with a SkinSpotlights video and community poll rankings" loading="lazy">
+          <img class="shot--light" src="assets/images/light/lc_skin_details_light.jpg" alt="Skin detail page in the light theme with spotlights and community rankings" loading="lazy">
+        </div>
+        <div class="shot__body">
+          <h3>Skin details &amp; community rankings</h3>
+          <p>Open any skin for embedded SkinSpotlights previews and community poll rankings, so you can see how it plays and how the community rates it.</p>
+        </div>
+      </article>
     </div>
+
+    <details class="more">
+      <summary class="more__toggle">
+        <span>View more features</span>
+        <svg class="more__chev" aria-hidden="true"><use href="#i-chevron"/></svg>
+      </summary>
+      <div class="shots more__grid">
+        <article class="shot">
+          <div class="shot__frame">
+            <img class="shot--dark" src="assets/images/dark/lc_dashboard_dark.jpg" alt="Dashboard showing champion and skin collection progress" loading="lazy">
+            <img class="shot--light" src="assets/images/light/lc_dashboard_light.jpg" alt="Dashboard shown in the light theme" loading="lazy">
+          </div>
+          <div class="shot__body">
+            <h3>Dashboard</h3>
+            <p>Your central hub for collection progress, overall mastery scores, skin completion rates, and real-time sales alerts.</p>
+          </div>
+        </article>
+        <article class="shot">
+          <div class="shot__frame">
+            <img class="shot--dark" src="assets/images/dark/lc_champion_inventory_least_skins_dark.jpg" alt="Champion inventory filtered by least skins owned" loading="lazy">
+            <img class="shot--light" src="assets/images/light/lc_champion_inventory_light.jpg" alt="Champion inventory shown in the light theme" loading="lazy">
+          </div>
+          <div class="shot__body">
+            <h3>Champion inventory</h3>
+            <p>Complete roster overview featuring owned skins, mastery tiers, and exact points-to-next-level tracking.</p>
+          </div>
+        </article>
+        <article class="shot">
+          <div class="shot__frame">
+            <img class="shot--dark" src="assets/images/dark/lc_skin_inventory_dark_no_disclaimer.jpg" alt="Skin inventory browser in the dark theme, filtered by rarity and ownership" loading="lazy">
+            <img class="shot--light" src="assets/images/light/lc_skins_light.jpg" alt="Skin inventory browser with rarity borders and ownership badges" loading="lazy">
+          </div>
+          <div class="shot__body">
+            <h3>Skin inventory</h3>
+            <p>Browse the full cosmetic catalog with instant filters for champion, rarity, tier, and ownership status, highlighting community poll ratings.</p>
+          </div>
+        </article>
+        <article class="shot">
+          <div class="shot__frame">
+            <img class="shot--dark" src="assets/images/dark/lc_champion_details_dark.jpg" alt="Champion detail page in the dark theme with mastery and skin collection" loading="lazy">
+            <img class="shot--light" src="assets/images/light/lc_champion_details_light.jpg" alt="Champion detail page in the light theme with mastery and skin collection" loading="lazy">
+          </div>
+          <div class="shot__body">
+            <h3>Champion details</h3>
+            <p>Deep-dive any champion to inspect mastery milestones, milestone progression (coming soon), and owned skin breakdowns.</p>
+          </div>
+        </article>
+      </div>
+    </details>
   </section>
 
-  <section class="section wrap" aria-labelledby="features-title">
+  <section class="section wrap section--wide" aria-labelledby="features-title">
     <div class="section__head">
-      <h2 id="features-title">Built for the collection grind</h2>
-      <p>Everything you need to plan the next unlock - without a bloated toolkit.</p>
+      <h2 id="features-title">Built around your collection</h2>
+      <p>Seamlessly syncs with your local client to track your collection, monitor weekly store sales, and explore skin rankings in one dedicated workspace.</p>
     </div>
+
+    <div class="features features--headline">
+      <article class="feature feature--headline">
+        <div class="feature__icon" aria-hidden="true">🚨</div>
+        <h3>Wishlists &amp; Smart Sales Radar</h3>
+        <p>Never miss your dream skin or Prestige drop again. Pin any skin, chroma, or cosmetic to your per-account wishlist and receive real-time desktop alerts the exact moment it rotates into weekly store sales, drops in price, or hits the Mythic Shop.</p>
+      </article>
+      <article class="feature feature--headline">
+        <div class="feature__icon" aria-hidden="true">⭐</div>
+        <h3>Skins Browser, Community Rankings &amp; Spotlights</h3>
+        <p>Explore the complete cosmetic catalog filtered by champion, rarity, tier, and ownership state. Dive deep into any skin to view its community poll rankings and embedded SkinSpotlights videos, allowing you to preview in-game animations and see exactly how the community rates it.</p>
+      </article>
+    </div>
+
     <div class="features">
       <article class="feature">
-        <div class="feature__icon"><svg aria-hidden="true"><use href="#i-shard"/></svg></div>
-        <h3>Hextech Shard Engine</h3>
-        <p>Grades every shard and skin in your loot, showing which disenchants close a skin gap and which are worth keeping - so no Orange Essence goes to waste.</p>
+        <div class="feature__icon" aria-hidden="true">⚔️</div>
+        <h3>Champion Roster &amp; Mastery Explorer</h3>
+        <p>Deep-dive inventory covering every champion, mastery tier, milestone progression, and points-to-next-level tracking. Outfitted with robust multi-criteria filtering and grouping options—such as least skins owned, most skins owned, mastery progressions, and so on.</p>
       </article>
       <article class="feature">
-        <div class="feature__icon"><svg aria-hidden="true"><use href="#i-filter"/></svg></div>
-        <h3>Persistent Filters</h3>
-        <p>Search, sort and filter the champion inventory and skin browser; your choices are remembered between sessions, so you pick up exactly where you left off.</p>
-      </article>
-      <article class="feature">
-        <div class="feature__icon"><svg aria-hidden="true"><use href="#i-vault"/></svg></div>
-        <h3>Custom Matchup Vaults</h3>
-        <p>Keep private, per-champion notes and matchup references in your own vaults, ready before you lock in your next game.</p>
-      </article>
-      <article class="feature">
-        <div class="feature__icon"><svg aria-hidden="true"><use href="#i-bolt"/></svg></div>
-        <h3>Lightweight Electron/React build</h3>
-        <p>A slim Electron + React shell that reads the local League client and stays light on resources - no bloat and no background services.</p>
+        <div class="feature__icon" aria-hidden="true">🎁</div>
+        <h3>Smart Loot &amp; Shard Optimization Engine <span class="badge">Coming Soon</span></h3>
+        <p>Automated Hextech crafting intelligence that will cross-reference unowned skin shards with community tier lists. Get instant calculations on whether to upgrade, disenchant, or reroll, alongside Blue Essence saving alerts for champion unlocks.</p>
       </article>
     </div>
   </section>

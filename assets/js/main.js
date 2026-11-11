@@ -46,8 +46,11 @@
   var btn = document.getElementById('download-btn');
   var meta = document.getElementById('release-meta');
 
+  /* Shows the "latest release" line and hides it entirely when there is nothing to say. */
   function setMeta(text) {
-    if (meta) meta.textContent = text;
+    if (!meta) return;
+    meta.textContent = text || '';
+    meta.hidden = !text;
   }
 
   function prettySize(bytes) {
@@ -56,13 +59,14 @@
     return mb >= 1 ? mb.toFixed(1) + ' MB' : Math.max(1, Math.round(bytes / 1024)) + ' KB';
   }
 
-  function useFallback(message) {
+  /* Point the button at the releases page and render no placeholder copy. */
+  function useFallback() {
     if (btn) {
       btn.href = RELEASES_URL;
       btn.removeAttribute('download');
       btn.classList.add('btn--pending');
     }
-    setMeta(message);
+    setMeta('');
   }
 
   function useRelease(release) {
@@ -71,7 +75,7 @@
     for (var i = 0; i < assets.length; i++) {
       if (/\.exe$/i.test(assets[i].name)) { exe = assets[i]; break; }
     }
-    if (!exe) { useFallback('No Windows build in the latest release - see all releases on GitHub.'); return; }
+    if (!exe) { useFallback(); return; }
 
     if (btn) {
       btn.href = exe.browser_download_url;
@@ -93,19 +97,14 @@
   }
 
   function loadRelease() {
-    if (typeof window.fetch !== 'function') {
-      useFallback('Release lookup is unavailable in this browser - download from GitHub.');
-      return;
-    }
+    if (typeof window.fetch !== 'function') { useFallback(); return; }
     window.fetch(API_URL, { headers: { Accept: 'application/vnd.github+json' } })
       .then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
         return res.json();
       })
       .then(useRelease)
-      .catch(function () {
-        useFallback('No published build yet - the download link appears here once a release is available.');
-      });
+      .catch(useFallback);
   }
 
   if (document.readyState === 'loading') {
