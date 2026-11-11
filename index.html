@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>League Companion App - Collection, Mastery &amp; Wishlist Tracker</title>
+<meta name="description" content="A lightweight Windows desktop companion for League of Legends: track champion collection, mastery, skins and a wishlist sales radar from the local game client.">
+<meta name="theme-color" content="#080b12">
+<link rel="canonical" href="https://tilwinjoy.github.io/league-companion-app/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="League Companion App">
+<meta property="og:description" content="Track your champion collection, mastery, skins and wishlist from a lightweight Windows desktop app.">
+<meta property="og:url" content="https://tilwinjoy.github.io/league-companion-app/">
+<meta property="og:image" content="https://tilwinjoy.github.io/league-companion-app/assets/images/dark/lc_dashboard_dark.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23080b12'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='700' fill='%23c8aa6e' text-anchor='middle'%3ELC%3C/text%3E%3C/svg%3E">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('lc-theme');
+      if (t !== 'light' && t !== 'dark') {
+        t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) { /* keep the default dark theme */ }
+  })();
+</script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- reusable icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-github" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-shard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6-6 6 6-6 12z"/><path d="M6 9h12"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18l-7 8v6l-4-2v-4z"/></symbol>
+  <symbol id="i-vault" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 8.3-7 10-4-1.7-7-5.6-7-10V6z"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></symbol>
+</svg>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="./">
+      <span class="brand__mark">LC</span>
+      <span class="name">League Companion</span>
+    </a>
+    <nav class="nav__actions" aria-label="Site">
+      <a class="ghost-link" href="https://github.com/tilwinjoy/league-companion-app/releases" target="_blank" rel="noopener">
+        <svg aria-hidden="true"><use href="#i-github"/></svg><span>Releases</span>
+      </a>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Switch to light theme" title="Light mode">
+        <svg class="icon-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        <svg class="icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <span class="eyebrow"><span class="dot"></span> Windows desktop companion &middot; Electron + React</span>
+    <h1>League <span>Companion</span> App</h1>
+    <p class="hero__sub">Track your champion collection, mastery progress, skins and a live wishlist sales radar - all in one focused dashboard that reads your game data from the local League client.</p>
+    <div class="hero__cta">
+      <a id="download-btn" class="btn btn--primary" href="https://github.com/tilwinjoy/league-companion-app/releases" rel="noopener">
+        <svg aria-hidden="true"><use href="#i-download"/></svg> Download for Windows
+      </a>
+      <a class="btn btn--ghost" href="https://github.com/tilwinjoy/league-companion-app" target="_blank" rel="noopener">
+        <svg aria-hidden="true"><use href="#i-github"/></svg> View on GitHub
+      </a>
+    </div>
+    <p class="btn__note" id="release-meta" aria-live="polite">Checking the latest release&hellip;</p>
+  </section>
+
+  <section class="section wrap" aria-labelledby="preview-title">
+    <div class="section__head">
+      <h2 id="preview-title">Take a look inside</h2>
+      <p>A single window for your whole collection. Use the theme switch above to preview both dark and light modes.</p>
+    </div>
+    <div class="shots">
+      <article class="shot">
+        <div class="shot__frame">
+          <img class="shot--dark" src="assets/images/dark/lc_dashboard_dark.png" alt="Dashboard showing champion and skin collection progress" loading="lazy">
+          <img class="shot--light" src="assets/images/light/lc_dashboad_light.png" alt="Dashboard shown in the light theme" loading="lazy">
+        </div>
+        <div class="shot__body">
+          <h3>Dashboard</h3>
+          <p>Collection and skin progress, mastery score, Blue Essence and an at-a-glance shop &amp; sales radar.</p>
+        </div>
+      </article>
+      <article class="shot">
+        <div class="shot__frame">
+          <img class="shot--dark" src="assets/images/dark/lc_champion_inventory_least_skins_dark.png" alt="Champion inventory filtered by least skins owned" loading="lazy">
+          <img class="shot--light" src="assets/images/light/lc_champion_inventory_light.png" alt="Champion inventory shown in the light theme" loading="lazy">
+        </div>
+        <div class="shot__body">
+          <h3>Champion inventory</h3>
+          <p>Every champion with skins owned, mastery level and the points left to the next level.</p>
+        </div>
+      </article>
+      <article class="shot">
+        <div class="shot__frame">
+          <img class="shot--dark" src="assets/images/dark/lc_wishlist_win_notification_dark.png" alt="Wishlist with a desktop notification for a discounted skin" loading="lazy">
+          <img class="shot--light" src="assets/images/light/lc_wishlist_light.png" alt="Wishlist shown in the light theme" loading="lazy">
+        </div>
+        <div class="shot__body">
+          <h3>Wishlist &amp; sales radar</h3>
+          <p>Pin the skins you want and get notified the moment they go on sale or land in the Mythic Shop.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section wrap" aria-labelledby="features-title">
+    <div class="section__head">
+      <h2 id="features-title">Built for the collection grind</h2>
+      <p>Everything you need to plan the next unlock - without a bloated toolkit.</p>
+    </div>
+    <div class="features">
+      <article class="feature">
+        <div class="feature__icon"><svg aria-hidden="true"><use href="#i-shard"/></svg></div>
+        <h3>Hextech Shard Engine</h3>
+        <p>Grades every shard and skin in your loot, showing which disenchants close a skin gap and which are worth keeping - so no Orange Essence goes to waste.</p>
+      </article>
+      <article class="feature">
+        <div class="feature__icon"><svg aria-hidden="true"><use href="#i-filter"/></svg></div>
+        <h3>Persistent Filters</h3>
+        <p>Search, sort and filter the champion inventory and skin browser; your choices are remembered between sessions, so you pick up exactly where you left off.</p>
+      </article>
+      <article class="feature">
+        <div class="feature__icon"><svg aria-hidden="true"><use href="#i-vault"/></svg></div>
+        <h3>Custom Matchup Vaults</h3>
+        <p>Keep private, per-champion notes and matchup references in your own vaults, ready before you lock in your next game.</p>
+      </article>
+      <article class="feature">
+        <div class="feature__icon"><svg aria-hidden="true"><use href="#i-bolt"/></svg></div>
+        <h3>Lightweight Electron/React build</h3>
+        <p>A slim Electron + React shell that reads the local League client and stays light on resources - no bloat and no background services.</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <a class="brand" href="./"><span class="brand__mark">LC</span><span class="name">League Companion</span></a>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="https://github.com/tilwinjoy/league-companion-app/releases" target="_blank" rel="noopener">Download</a>
+        <a href="https://github.com/tilwinjoy/league-companion-app" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/tilwinjoy/league-companion-app/issues" target="_blank" rel="noopener">Report an issue</a>
+      </nav>
+    </div>
+    <p class="legal">League Companion App isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League Games and all associated properties are trademarks or registered trademarks of Riot Games, Inc.</p>
+    <p class="copyright">&copy; 2026 League Companion App. Provided &ldquo;as is&rdquo;, without warranty of any kind - see the <a href="https://github.com/tilwinjoy/league-companion-app/blob/main/LICENSE" target="_blank" rel="noopener">LICENSE</a> for details.</p>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
