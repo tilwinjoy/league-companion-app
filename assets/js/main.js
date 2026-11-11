@@ -1,14 +1,14 @@
 /* =========================================================
    League Companion App - landing page behaviour
    1) light/dark theme toggle (defaults to system preference)
-   2) fetch the newest GitHub release and wire up the download button
+   2) fetch the newest published release and wire up the download button
    ========================================================= */
 (function () {
   'use strict';
 
   var REPO = 'tilwinjoy/league-companion-app';
   var RELEASES_URL = 'https://github.com/' + REPO + '/releases';
-  var API_URL = 'https://api.github.com/repos/' + REPO + '/releases/latest';
+  var API_URL = 'https://api.github.com/repos/' + REPO + '/releases';
   var THEME_KEY = 'lc-theme';
 
   var root = document.documentElement;
@@ -96,6 +96,20 @@
     setMeta(bits.length ? 'Latest release: ' + bits.join(' \u00B7 ') : 'Direct download from GitHub Releases.');
   }
 
+  /* The /releases feed lists published releases newest-first and, unlike
+     /releases/latest, still includes pre-releases. Return the first entry that
+     actually ships a Windows installer. */
+  function pickRelease(releases) {
+    if (!Array.isArray(releases)) return null;
+    for (var i = 0; i < releases.length; i++) {
+      var assets = releases[i] && releases[i].assets ? releases[i].assets : [];
+      for (var j = 0; j < assets.length; j++) {
+        if (/\.exe$/i.test(assets[j].name)) return releases[i];
+      }
+    }
+    return null;
+  }
+
   function loadRelease() {
     if (typeof window.fetch !== 'function') { useFallback(); return; }
     window.fetch(API_URL, { headers: { Accept: 'application/vnd.github+json' } })
@@ -103,7 +117,10 @@
         if (!res.ok) throw new Error('HTTP ' + res.status);
         return res.json();
       })
-      .then(useRelease)
+      .then(function (releases) {
+        var release = pickRelease(releases);
+        if (release) { useRelease(release); } else { useFallback(); }
+      })
       .catch(useFallback);
   }
 
