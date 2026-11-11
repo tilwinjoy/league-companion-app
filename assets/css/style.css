@@ -74,7 +74,7 @@ p{margin:0}
 
 /* ---------- header ---------- */
 .site-header{position:sticky;top:0;z-index:50;background:var(--header-bg);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:66px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:58px}
 .brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:.2px}
 .brand__mark{width:32px;height:32px;border-radius:9px;background:var(--grad);display:grid;place-items:center;color:#081018;font-size:12px;font-weight:800;box-shadow:0 6px 18px -6px var(--teal)}
 .nav__actions{display:flex;align-items:center;gap:10px}
@@ -89,11 +89,11 @@ html[data-theme="light"] .icon-moon{display:none}
 .ghost-link svg{width:17px;height:17px}
 
 /* ---------- hero ---------- */
-.hero{padding:80px 0 34px;text-align:center}
-.hero h1{font-size:clamp(2.4rem,6vw,4rem);font-weight:800;letter-spacing:-.02em}
+.hero{padding:26px 0 16px;text-align:center}
+.hero h1{font-size:clamp(2.4rem,6vw,4rem);font-weight:800;letter-spacing:-.02em;line-height:1.1}
 .hero h1 .hero__accent{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero__sub{max-width:660px;margin:18px auto 0;font-size:clamp(1rem,2.2vw,1.16rem);color:var(--muted)}
-.hero__cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:32px}
+.hero__sub{max-width:820px;margin:12px auto 0;font-size:clamp(1rem,2.2vw,1.16rem);color:var(--muted)}
+.hero__cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:18px}
 .btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:14px;font-size:16px;font-weight:700;border:1px solid transparent;cursor:pointer;transition:transform .18s,box-shadow .18s,border-color .18s,opacity .18s}
 .btn svg{width:18px;height:18px}
 .btn--primary{background:var(--grad);color:#08121a;box-shadow:0 18px 42px -18px var(--teal)}
@@ -102,13 +102,20 @@ html[data-theme="light"] .icon-moon{display:none}
 .btn--ghost:hover{border-color:var(--teal);transform:translateY(-2px)}
 .btn--pending{opacity:.9}
 .btn__note{margin-top:16px;min-height:20px;font-size:13.5px;color:var(--muted)}
-.hero__free{margin-top:10px;font-size:13.5px;color:var(--muted)}
+#release-meta:not([hidden])::after{content:"\00B7";margin:0 8px;color:var(--muted)}
+.hero__free{color:var(--muted)}
 
 /* ---------- sections ---------- */
-.section{padding:66px 0}
-.section__head{max-width:660px;margin:0 auto 42px;text-align:center}
-.section__head h2{font-size:clamp(1.7rem,3.6vw,2.35rem);font-weight:800;letter-spacing:-.015em}
-.section__head p{margin-top:12px;color:var(--muted);font-size:1.02rem}
+.section{padding:32px 0}
+.section__head{max-width:780px;margin:0 auto 22px;text-align:center}
+.section__head h2{font-size:clamp(1.6rem,3.2vw,2.1rem);font-weight:800;letter-spacing:-.015em}
+.section__head p{max-width:640px;margin:12px auto 0;color:var(--muted);font-size:1.02rem}
+
+/* ---------- install note (Windows SmartScreen) ---------- */
+.callout{display:flex;gap:12px;align-items:flex-start;max-width:720px;margin:0 auto;padding:12px 16px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.callout__icon{flex:0 0 auto;width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:var(--card-2);border:1px solid var(--line);font-size:14px;line-height:1}
+.callout__title{font-size:.86rem;font-weight:600}
+.callout__text{margin-top:2px;color:var(--muted);font-size:.85rem;line-height:1.55}
 
 /* ---------- preview grid ---------- */
 .shots{display:grid;gap:24px;grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -166,8 +173,8 @@ html[data-theme="light"] .shot--dark{display:none}
 
 /* ---------- responsive ---------- */
 @media (max-width:640px){
-  .hero{padding-top:56px}
-  .nav{height:60px}
+  .hero{padding-top:20px}
+  .nav{height:54px}
   .brand .name{display:none}
   .ghost-link span{display:none}
   .shots{grid-template-columns:1fr}
