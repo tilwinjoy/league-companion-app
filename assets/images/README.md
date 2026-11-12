@@ -6,6 +6,8 @@ This folder holds two layers of images for the landing page.
 | --- | --- | --- |
 | `originals/<theme>/*.png` | Full-resolution PNG masters (source of truth) | No |
 | `<theme>/*.jpg` | Optimised production images (max 1280px, JPEG q82) | Yes (`index.html`) |
+| `favicon.ico` | Browser tab icon (16, 32 and 48px, 32-bpp) | Yes (`index.html`) |
+| `icon.png` | App icon and logo mark (512px square) | Yes (`index.html`) |
 
 `<theme>` is `dark` or `light`. The page swaps between the two via the theme toggle.
 
