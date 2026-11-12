@@ -41,6 +41,10 @@ The site showcases the desktop companion's feature set:
 Found a bug or have a suggestion? Open an issue at
 <https://github.com/tilwinjoy/league-companion-app/issues>.
 
+## Privacy
+
+See [`PRIVACY.md`](PRIVACY.md) for the privacy policy.
+
 ## License
 
 Copyright © 2026. All Rights Reserved. **Proprietary and confidential** — unauthorized
