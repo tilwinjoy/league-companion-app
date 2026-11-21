@@ -156,7 +156,12 @@ html[data-theme="light"] .shot--dark{display:none}
 .badge--free{color:var(--teal);background:rgba(10,200,185,.14);border:1px solid rgba(10,200,185,.4)}
 
 /* ---------- featured previews + collapsible extras ---------- */
+.shots--featured{grid-template-columns:repeat(3,minmax(0,1fr))}
 .shots--featured .shot__body h3{font-size:1.22rem}
+@media (max-width:1100px){
+  .shots--featured{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .shots--featured > :last-child{grid-column:1 / -1}
+}
 .more{margin-top:28px}
 .more__toggle{display:flex;align-items:center;justify-content:center;gap:10px;width:fit-content;margin:0 auto;padding:13px 22px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--text);font-size:15px;font-weight:600;cursor:pointer;list-style:none;transition:border-color .18s,transform .18s}
 .more__toggle::-webkit-details-marker{display:none}
