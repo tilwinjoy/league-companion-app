@@ -1,13 +1,12 @@
 /* =========================================================
    League Companion App - landing page behaviour
    1) light/dark theme toggle (defaults to system preference)
-   2) fetch the newest published release and wire up the download button
+   2) fetch the newest published release and show its version in the hero note
    ========================================================= */
 (function () {
   'use strict';
 
   var REPO = 'tilwinjoy/league-companion-app';
-  var RELEASES_URL = 'https://github.com/' + REPO + '/releases';
   var API_URL = 'https://api.github.com/repos/' + REPO + '/releases';
   var THEME_KEY = 'lc-theme';
 
@@ -42,8 +41,7 @@
     });
   }
 
-  /* ---------------- download button ---------------- */
-  var btn = document.getElementById('download-btn');
+  /* ---------------- latest release note ---------------- */
   var meta = document.getElementById('release-meta');
 
   /* Shows the "latest release" line and hides it entirely when there is nothing to say. */
@@ -59,13 +57,8 @@
     return mb >= 1 ? mb.toFixed(1) + ' MB' : Math.max(1, Math.round(bytes / 1024)) + ' KB';
   }
 
-  /* Point the button at the releases page and render no placeholder copy. */
+  /* Render no placeholder copy when there is nothing to show. */
   function useFallback() {
-    if (btn) {
-      btn.href = RELEASES_URL;
-      btn.removeAttribute('download');
-      btn.classList.add('btn--pending');
-    }
     setMeta('');
   }
 
@@ -76,12 +69,6 @@
       if (/\.exe$/i.test(assets[i].name)) { exe = assets[i]; break; }
     }
     if (!exe) { useFallback(); return; }
-
-    if (btn) {
-      btn.href = exe.browser_download_url;
-      btn.setAttribute('download', exe.name);
-      btn.classList.remove('btn--pending');
-    }
 
     var bits = [];
     if (release.tag_name) bits.push(release.tag_name);

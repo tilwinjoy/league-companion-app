@@ -100,8 +100,12 @@ html[data-theme="light"] .icon-moon{display:none}
 .btn--primary:hover{transform:translateY(-2px);box-shadow:0 26px 54px -18px var(--teal)}
 .btn--ghost{background:var(--card);border-color:var(--line)}
 .btn--ghost:hover{border-color:var(--teal);transform:translateY(-2px)}
-.btn--pending{opacity:.9}
-.btn__note{margin-top:16px;min-height:20px;font-size:13.5px;color:var(--muted)}
+.btn__note{margin-top:16px;font-size:13.5px;color:var(--muted)}
+.hero__alt{margin-top:8px}
+.hero__link{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:14.5px;font-weight:600;transition:color .18s}
+.hero__link:hover{color:var(--teal)}
+.hero__link:hover span{text-decoration:underline;text-underline-offset:3px}
+.hero__link svg{width:16px;height:16px}
 #release-meta:not([hidden])::after{content:"\00B7";margin:0 8px;color:var(--muted)}
 .hero__free{color:var(--muted)}
 
